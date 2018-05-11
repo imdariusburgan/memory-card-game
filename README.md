@@ -2,6 +2,9 @@
 
 This is a card matching game that requires you to match all of the cards in order to win.
 
+## Memory Game preview
+![Memory Game screenshot](https://github.com/imdariusburgan/udacity-memory-card-game/blob/master/img/game-screenshot.PNG)
+
 ## Instructions
 
 1. Load the project up and start playing by going here: https://imdariusburgan.github.io/udacity-memory-card-game/
