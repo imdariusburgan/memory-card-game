@@ -1,7 +1,12 @@
 /*
  * TO DO:
- * Add click event on button to resart
- * Clean up & refactor code
+ * - Add click event on button to resart
+ *  + Select restart icon
+ *  + Set up click event listener
+ *  + Run function to launch game
+ * - Decrease star ratings after X amount of moves
+ * - Create a timer that starts with the game and stops once it's over
+ * - Clean up & refactor code
  */
 
 
@@ -36,14 +41,12 @@ const showCardSymbol = (card) => {
  */
 const addCardToOpenList = (card) => {
     cardCompareList.push(card.firstChild.classList.value);
-    console.log(card);
 }
 
 /*
  * Function to lock cards if matched correctly
  */
 const correctlyMatched = (clickedCards) => {
-    console.log ('correct')
 
     // Locks cards in place
     clickedCards.forEach( (matchingCard) => {
@@ -59,7 +62,6 @@ const correctlyMatched = (clickedCards) => {
  * Function to hide cards if matched incorrectly
  */
 const inCorrectlyMatched = (clickedCards) => {
-    console.log ('wrong');
 
     setTimeout( () => {
         clickedCards.forEach( (symbol) => {
@@ -69,14 +71,13 @@ const inCorrectlyMatched = (clickedCards) => {
         // clear array
         cardCompareList = [];
 
-    }, 500);
+    }, 200);
 }
 
 /*
  * Function to alert the user that they've won the game once all cards have been matched.
  */
 const congrats = () => {
-    console.log(document.querySelectorAll('.match').length);
     if (document.querySelectorAll('.match').length === 16) {
         alert("CONGRATS YOU WON! IT TOOK YOU " + movesCounter.innerHTML + " MOVES!" )
     }
@@ -158,8 +159,42 @@ function shuffle(array) {
 }
 
 
+
+
+
+const starRating = () => {
+
+    // Select the list that holds the stars
+    const starsList = document.querySelector(".stars")
+
+    /*
+     * If number of moves equal 10, the player will be bumped down to 2 stars
+     * If number of moves equal 15, the player will be bumped down to 1 stars
+     * If number of moves equal 20, the player will be bumped down to 0 stars
+     */
+
+   if (parseInt(movesCounter.innerHTML) === 10) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    } else if (parseInt(movesCounter.innerHTML) === 15) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    } else if (parseInt(movesCounter.innerHTML) === 20) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    }
+}
+
+
+
+
+
+// Function to show card symbols and check to see if they match
 blankCards.forEach( (card) => {
-    card.addEventListener("click", (event)=> {
+    card.addEventListener("click", (event) => {
         showCardSymbol(card);
         addCardToOpenList(card);
 
@@ -177,21 +212,48 @@ blankCards.forEach( (card) => {
         }
         setTimeout ( () => {
             congrats();
-        }, 200);
+        }, 0);
+
+        starRating();
     });
 });
 
 
 
 
+const startGame = () => {
+    console.log("Game Started");
 
-/*
- * DONE set up the event listener for a card. If a card is clicked:
- * DONE - display the card's symbol (put this functionality in another function that you call from this one)
- * DONE - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+    /*
+     * Declare global variables
+     */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function that allows players to restart the game
+const restartGame = () => {
+
+    // Select restart button
+    const restartButton = document.querySelector('.restart');
+    
+    // Add click event to restart button
+    restartButton.addEventListener("click", (event) => {
+        /*
+         *
+         * Add function to restart game here
+         * 
+         */
+    });
+}
