@@ -159,7 +159,15 @@ function shuffle(array) {
 }
 
 
-
+const gameTimer = () => {
+    const timerInstance = new Timer();
+    const timer = new Timer();
+    timer.start();
+    timer.addEventListener("secondsUpdated", (event) => {
+        document.querySelector('.time').innerHTML = timer.getTimeValues().toString();
+    });
+}
+gameTimer();
 
 
 const starRating = () => {
