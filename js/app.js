@@ -1,11 +1,12 @@
 /*
  * TO DO:
+ * - Add game code to single 'launch' function
  * - Add click event on button to resart
  *  + Select restart icon
  *  + Set up click event listener
  *  + Run function to launch game
- * - Decrease star ratings after X amount of moves
- * - Create a timer that starts with the game and stops once it's over
+ * -DONE- Decrease star ratings after X amount of moves
+ * -DONE- Create a timer that starts with the game and stops once it's over
  * - Clean up & refactor code
  */
 
