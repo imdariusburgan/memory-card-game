@@ -79,7 +79,8 @@ const inCorrectlyMatched = (clickedCards) => {
  */
 const congrats = () => {
     if (document.querySelectorAll('.match').length === 16) {
-        alert("CONGRATS YOU WON! IT TOOK YOU " + movesCounter.innerHTML + " MOVES!" )
+        clearInterval(timerVar);
+        alert(`Congratulations! It took you ${document.querySelector(".time").innerHTML} seconds and ${movesCounter.innerHTML} moves to win!`)
     }
 };
 
@@ -147,11 +148,11 @@ let timerVar = setInterval(countTimer, 1000);
 let totalSeconds = 0;
 function countTimer() {
    ++totalSeconds;
-   var hour = Math.floor(totalSeconds /3600);
-   var minute = Math.floor((totalSeconds - hour*3600)/60);
-   var seconds = totalSeconds - (hour*3600 + minute*60);
+   const hour = Math.floor(totalSeconds /3600);
+   const minute = Math.floor((totalSeconds - hour*3600)/60);
+   const seconds = totalSeconds - (hour*3600 + minute*60);
 
-   document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+   document.querySelector(".time").innerHTML = seconds;
 }
 
 
