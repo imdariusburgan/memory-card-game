@@ -142,6 +142,18 @@ for (let i = 0; i < cardIcons.length; i++) {
     }
 });*/
 
+// Timer function from https://stackoverflow.com/questions/5517597/
+let timerVar = setInterval(countTimer, 1000);
+let totalSeconds = 0;
+function countTimer() {
+   ++totalSeconds;
+   var hour = Math.floor(totalSeconds /3600);
+   var minute = Math.floor((totalSeconds - hour*3600)/60);
+   var seconds = totalSeconds - (hour*3600 + minute*60);
+
+   document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -157,17 +169,6 @@ function shuffle(array) {
 
     return array;
 }
-
-
-const gameTimer = () => {
-    const timerInstance = new Timer();
-    const timer = new Timer();
-    timer.start();
-    timer.addEventListener("secondsUpdated", (event) => {
-        document.querySelector('.time').innerHTML = timer.getTimeValues().toString();
-    });
-}
-gameTimer();
 
 
 const starRating = () => {
