@@ -12,7 +12,7 @@
 
 const launchGame = () => {
 
-        // Select Div Container
+    // Select Div Container
     const divContainer = document.querySelector(".container");
 
     // Select 'Moves' counter
@@ -21,7 +21,7 @@ const launchGame = () => {
     // An empty list to store clicked cards for match comparison
     let cardCompareList = [];
 
-
+    
 
 }
 
@@ -207,32 +207,33 @@ const starRating = () => {
 
 
 
+const doCardsMatch = () => {
+    // Function to show card symbols and check to see if they match
+    blankCards.forEach( (card) => {
+        card.addEventListener("click", (event) => {
+            showCardSymbol(card);
+            addCardToOpenList(card);
 
-// Function to show card symbols and check to see if they match
-blankCards.forEach( (card) => {
-    card.addEventListener("click", (event) => {
-        showCardSymbol(card);
-        addCardToOpenList(card);
+            if (cardCompareList.length == 2) {
 
-        if (cardCompareList.length == 2) {
+                const clickedCards = document.querySelectorAll(".open");
 
-            const clickedCards = document.querySelectorAll(".open");
+                if (cardCompareList[0] == cardCompareList[1] ) {
+                    correctlyMatched(clickedCards);
+                } else {
+                    inCorrectlyMatched(clickedCards);
+                }
 
-            if (cardCompareList[0] == cardCompareList[1] ) {
-                correctlyMatched(clickedCards);
-            } else {
-                inCorrectlyMatched(clickedCards);
+                increaseMoves();
             }
+            setTimeout ( () => {
+                congrats();
+            }, 0);
 
-            increaseMoves();
-        }
-        setTimeout ( () => {
-            congrats();
-        }, 0);
-
-        starRating();
+            starRating();
+        });
     });
-});
+}
 
 
 
