@@ -8,6 +8,20 @@ const movesCounter = document.querySelector(".moves");
 // An empty list to store clicked cards for match comparison
 let cardCompareList = [];
 
+// Different card types
+const diamond = "diamond";
+const paperPlane = "paper-plane-o";
+const anchor = "anchor";
+const bolt = "bolt";
+const cube = "cube";
+const leaf = "leaf";
+const bicycle = "bicycle";
+const bomb = "bomb";
+
+// An array of all cards types in deck
+const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
+
+
 const launchGame = () => {
 
     prepareGame();
@@ -37,6 +51,20 @@ const prepareGame = () => {
         let uniqueCard = document.createElement('i');
         card.appendChild(uniqueCard).className = "fa fa-";
     });
+
+    // grab all 'i' elements
+    const cardIcons = document.querySelectorAll('.deck i');
+
+    // Shuffle cards
+    let shuffleCards = shuffle(cardsInDeck);
+
+    /* 
+     * Loop through each card's icon HTML element and add a random card type
+     * to the class to complete it's Font-Awesome symbol
+     */
+    for (let i = 0; i < cardIcons.length; i++) {
+        cardIcons[i].className += shuffleCards[i];
+    };
 }
 
 // Timer function from https://stackoverflow.com/questions/5517597/
