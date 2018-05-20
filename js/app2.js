@@ -77,6 +77,11 @@ const showCardSymbol = (card) => {
     card.classList.add("open", "show");
 }
 
+// Function to move any card that's clicked to a 
+// list of open cards in order to compare for matches.
+const addCardToOpenList = (card) => {
+    cardCompareList.push(card.firstChild.classList.value);
+}
 
 
 // Timer function from https://stackoverflow.com/questions/5517597/
