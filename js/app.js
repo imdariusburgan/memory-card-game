@@ -27,6 +27,18 @@ const launchGame = () => {
 
 }
 
+const prepareGame = () => {
+    // Create game table/deck
+    const createCardDeck = document.createElement("ul");
+    divContainer.appendChild(createCardDeck).className = "deck";
+
+    // Select game table/deck
+    const cardDeck = document.querySelector(".deck");
+
+    // Clear/Reset the current card layout
+    cardDeck.innerHTML = "";
+}
+
 /*
  * Function to increase "moves" counter
  */
@@ -91,18 +103,6 @@ const congrats = () => {
         alert(`Congratulations! It took you ${document.querySelector(".time").innerHTML} seconds and ${movesCounter.innerHTML} moves to win!`)
     }
 };
-
-const prepareGame = () => {
-    // Create game table/deck
-    const createCardDeck = document.createElement("ul");
-    divContainer.appendChild(createCardDeck).className = "deck";
-
-    // Select game table/deck
-    const cardDeck = document.querySelector(".deck");
-
-    // Clear/Reset the current card layout
-    cardDeck.innerHTML = "";
-}
 
 // Different card types
 const diamond = "diamond";
