@@ -21,7 +21,9 @@ const launchGame = () => {
     // An empty list to store clicked cards for match comparison
     let cardCompareList = [];
 
-    
+    prepareGame();
+
+    doCardsMatch();
 
 }
 
@@ -90,16 +92,17 @@ const congrats = () => {
     }
 };
 
+const prepareGame = () => {
+    // Create game table/deck
+    const createCardDeck = document.createElement("ul");
+    divContainer.appendChild(createCardDeck).className = "deck";
 
-// Create game table/deck
-const createCardDeck = document.createElement("ul");
-divContainer.appendChild(createCardDeck).className = "deck";
+    // Select game table/deck
+    const cardDeck = document.querySelector(".deck");
 
-// Select game table/deck
-const cardDeck = document.querySelector(".deck");
-
-// Clear/Reset the current card layout
-cardDeck.innerHTML = "";
+    // Clear/Reset the current card layout
+    cardDeck.innerHTML = "";
+}
 
 // Different card types
 const diamond = "diamond";
@@ -233,6 +236,7 @@ const doCardsMatch = () => {
             starRating();
         });
     });
+    console.log('doCardsMatch is working');
 }
 
 
