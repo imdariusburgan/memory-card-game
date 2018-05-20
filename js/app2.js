@@ -72,6 +72,11 @@ const prepareGame = () => {
     };
 }
 
+// Function to display a card's symbol
+const showCardSymbol = (card) => {
+    card.classList.add("open", "show");
+}
+
 
 
 // Timer function from https://stackoverflow.com/questions/5517597/
