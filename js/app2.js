@@ -110,4 +110,5 @@ const congrats = () => {
     }
 };
 
+// This call the function to start the game
 launchGame();
