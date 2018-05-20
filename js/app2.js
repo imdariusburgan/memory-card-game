@@ -24,6 +24,19 @@ const prepareGame = () => {
 
     // Clear/Reset the current card layout
     cardDeck.innerHTML = "";
+
+    // Create 16 blank cards for game table/deck
+    for (let i = 0; i < 16; i++) {
+        let blankCard = document.createElement('li');
+        cardDeck.appendChild(blankCard).className = "card";
+    }
+
+    // Create icon html element and append to font-awesome icon class to it
+    const blankCards = document.querySelectorAll('.card');
+    blankCards.forEach( (card) => {
+        let uniqueCard = document.createElement('i');
+        card.appendChild(uniqueCard).className = "fa fa-";
+    });
 }
 
 launchGame();
