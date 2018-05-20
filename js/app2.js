@@ -25,6 +25,7 @@ const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, b
 const launchGame = () => {
 
     prepareGame();
+    timerFunction();
 
 }
 
@@ -71,16 +72,20 @@ const prepareGame = () => {
     };
 }
 
-// Timer function from https://stackoverflow.com/questions/5517597/
-let timerVar = setInterval(countTimer, 1000);
-let totalSeconds = 0;
-function countTimer() {
-   ++totalSeconds;
-   const hour = Math.floor(totalSeconds /3600);
-   const minute = Math.floor((totalSeconds - hour*3600)/60);
-   const seconds = totalSeconds - (hour*3600 + minute*60);
 
-   document.querySelector(".time").innerHTML = seconds;
+
+// Timer function from https://stackoverflow.com/questions/5517597/
+const timerFunction = () => {
+    let timerVar = setInterval(countTimer, 1000);
+    let totalSeconds = 0;
+    function countTimer() {
+    ++totalSeconds;
+    const hour = Math.floor(totalSeconds /3600);
+    const minute = Math.floor((totalSeconds - hour*3600)/60);
+    const seconds = totalSeconds - (hour*3600 + minute*60);
+
+    document.querySelector(".time").innerHTML = seconds;
+    }
 }
 
 
@@ -109,6 +114,93 @@ const congrats = () => {
         alert(`Congratulations! It took you ${document.querySelector(".time").innerHTML} seconds and ${movesCounter.innerHTML} moves to win!`)
     }
 };
+
+
+// Function that decrease the user's star rating 
+// based on how many moves they've completed.
+const starRating = () => {
+
+    // Select the list that holds the stars
+    const starsList = document.querySelector(".stars")
+
+    /*
+     * If number of moves equal 10, the player will be bumped down to 2 stars
+     * If number of moves equal 15, the player will be bumped down to 1 stars
+     * If number of moves equal 20, the player will be bumped down to 0 stars
+     */
+
+   if (parseInt(movesCounter.innerHTML) === 10) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    } else if (parseInt(movesCounter.innerHTML) === 15) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    } else if (parseInt(movesCounter.innerHTML) === 20) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    }
+}
+
+// Function to hide cards if they are incorrectly matched
+const inCorrectlyMatched = (clickedCards) => {
+    setTimeout( () => {
+        clickedCards.forEach( (symbol) => {
+            // remove the class 'open' and 'show' to flip the card back over.
+            symbol.classList.remove("open", "show");
+        });
+
+        // clear the array holding the 2 cards being compared
+        cardCompareList = [];
+
+    }, 200);
+}
+
+// Function to lock cards if they are correctly matched
+const correctlyMatched = (clickedCards) => {
+
+    // Add the class 'match' to lock the cards in a position showing their symbols.
+    // Remove the class 'open' and 'show' because it's no longer needed.
+    clickedCards.forEach( (matchingCard) => {
+        matchingCard.classList.add("match");
+        matchingCard.classList.remove("open", "show");
+    });
+
+    // clear the array holding the 2 cards being compared.
+    cardCompareList = [];
+}
+
+// Function to show card symbols when clicked, add them to an array, 
+// check to see if they match, and if so lock them. If not, flip them over.
+const doCardsMatch = () => {
+    blankCards.forEach( (card) => {
+        card.addEventListener("click", (event) => {
+            showCardSymbol(card);
+            addCardToOpenList(card);
+
+            if (cardCompareList.length == 2) {
+
+                const clickedCards = document.querySelectorAll(".open");
+
+                if (cardCompareList[0] == cardCompareList[1] ) {
+                    correctlyMatched(clickedCards);
+                } else {
+                    inCorrectlyMatched(clickedCards);
+                }
+
+                increaseMoves();
+            }
+            setTimeout ( () => {
+                congrats();
+            }, 0);
+
+            starRating();
+        });
+    });
+    console.log('doCardsMatch is working');
+}
 
 // This call the function to start the game
 launchGame();
