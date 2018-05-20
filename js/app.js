@@ -11,22 +11,24 @@
  */
 
 const launchGame = () => {
-    
+
+        // Select Div Container
+    const divContainer = document.querySelector(".container");
+
+    // Select 'Moves' counter
+    const movesCounter = document.querySelector(".moves");
+
+    // An empty list to store clicked cards for match comparison
+    let cardCompareList = [];
+
+
+
 }
-
-// Select Div Container
-const divContainer = document.querySelector(".container");
-
-// Select 'Moves' counter
-const movesCounter = document.querySelector(".moves");
-
-// An empty list to store clicked cards for match comparison
-let cardCompareList = [];
 
 /*
  * Function to increase "moves" counter
  */
-const IncreaseMoves = () => {
+const increaseMoves = () => {
     let currentMoves = parseInt(movesCounter.innerHTML);
     let newScore = currentMoves + 1;
     movesCounter.innerHTML = newScore;
@@ -222,7 +224,7 @@ blankCards.forEach( (card) => {
                 inCorrectlyMatched(clickedCards);
             }
 
-            IncreaseMoves();
+            increaseMoves();
         }
         setTimeout ( () => {
             congrats();
