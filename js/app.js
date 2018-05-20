@@ -10,6 +10,9 @@
  * - Clean up & refactor code
  */
 
+const launchGame = () => {
+    
+}
 
 // Select Div Container
 const divContainer = document.querySelector(".container");
