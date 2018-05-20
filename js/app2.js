@@ -29,7 +29,7 @@ const launchGame = () => {
 }
 
 const prepareGame = () => {
-    // Create game table/deck
+    // Create game table/deck and append to page
     const createCardDeck = document.createElement("ul");
     divContainer.appendChild(createCardDeck).className = "deck";
 
@@ -45,7 +45,11 @@ const prepareGame = () => {
         cardDeck.appendChild(blankCard).className = "card";
     }
 
-    // Create icon html element and append to font-awesome icon class to it
+    /*
+     * Create icon html element and append the font-awesome icon class format
+     * to it without fully completing the class name. The class name will be
+     * completed once the cards are shuffled.
+     */  
     const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
         let uniqueCard = document.createElement('i');
@@ -60,7 +64,7 @@ const prepareGame = () => {
 
     /* 
      * Loop through each card's icon HTML element and add a random card type
-     * to the class to complete it's Font-Awesome symbol
+     * to the class to complete it's Font-Awesome symbol.
      */
     for (let i = 0; i < cardIcons.length; i++) {
         cardIcons[i].className += shuffleCards[i];
