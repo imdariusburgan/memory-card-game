@@ -39,4 +39,32 @@ const prepareGame = () => {
     });
 }
 
+// Timer function from https://stackoverflow.com/questions/5517597/
+let timerVar = setInterval(countTimer, 1000);
+let totalSeconds = 0;
+function countTimer() {
+   ++totalSeconds;
+   const hour = Math.floor(totalSeconds /3600);
+   const minute = Math.floor((totalSeconds - hour*3600)/60);
+   const seconds = totalSeconds - (hour*3600 + minute*60);
+
+   document.querySelector(".time").innerHTML = seconds;
+}
+
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 launchGame();
