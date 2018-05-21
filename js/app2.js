@@ -83,6 +83,33 @@ const addCardToOpenList = (card) => {
     cardCompareList.push(card.firstChild.classList.value);
 }
 
+// Function to hide cards if they are incorrectly matched
+const inCorrectlyMatched = (clickedCards) => {
+    setTimeout( () => {
+        clickedCards.forEach( (symbol) => {
+            // remove the class 'open' and 'show' to flip the card back over.
+            symbol.classList.remove("open", "show");
+        });
+
+        // clear the array holding the 2 cards being compared
+        cardCompareList = [];
+
+    }, 200);
+}
+
+// Function to lock cards if they are correctly matched
+const correctlyMatched = (clickedCards) => {
+
+    // Add the class 'match' to lock the cards in a position showing their symbols.
+    // Remove the class 'open' and 'show' because it's no longer needed.
+    clickedCards.forEach( (matchingCard) => {
+        matchingCard.classList.add("match");
+        matchingCard.classList.remove("open", "show");
+    });
+
+    // clear the array holding the 2 cards being compared.
+    cardCompareList = [];
+}
 
 // Timer function from https://stackoverflow.com/questions/5517597/
 const timerFunction = () => {
@@ -152,34 +179,6 @@ const starRating = () => {
         starsList.removeChild(starsList.childNodes[0]);
 
     }
-}
-
-// Function to hide cards if they are incorrectly matched
-const inCorrectlyMatched = (clickedCards) => {
-    setTimeout( () => {
-        clickedCards.forEach( (symbol) => {
-            // remove the class 'open' and 'show' to flip the card back over.
-            symbol.classList.remove("open", "show");
-        });
-
-        // clear the array holding the 2 cards being compared
-        cardCompareList = [];
-
-    }, 200);
-}
-
-// Function to lock cards if they are correctly matched
-const correctlyMatched = (clickedCards) => {
-
-    // Add the class 'match' to lock the cards in a position showing their symbols.
-    // Remove the class 'open' and 'show' because it's no longer needed.
-    clickedCards.forEach( (matchingCard) => {
-        matchingCard.classList.add("match");
-        matchingCard.classList.remove("open", "show");
-    });
-
-    // clear the array holding the 2 cards being compared.
-    cardCompareList = [];
 }
 
 // Function to show card symbols when clicked, add them to an array, 
