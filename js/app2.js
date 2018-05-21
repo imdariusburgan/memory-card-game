@@ -95,6 +95,65 @@ const prepareGame = () => {
 // This call the function to start the game
 prepareGame();
 
+// Select restart button
+const restartButton = document.querySelector('.restart');
+
+// Add click event to restart button
+restartButton.addEventListener("click", (event) => {
+
+    // Select and remove current deck board
+    const cardDeck = document.querySelector('.deck')
+    divContainer.removeChild(cardDeck);
+
+    // Stop timer
+    clearInterval(timerVar);
+
+    // Build new board
+    prepareGame();
+
+    // Restart timer
+    totalSeconds = 0;
+    timerVar = setInterval(countTimer, 1000);
+
+    // Sets moves counter back to 0
+    movesCounter.innerHTML = 0;
+
+    // Removes number of stars
+    const scorePanel = document.querySelector('.score-panel')
+    const stars = document.querySelector('.stars')
+    scorePanel.removeChild(stars);
+
+    // Creates stars ul element
+    const newStars = document.createElement('ul')
+    scorePanel.insertBefore(newStars, document.querySelector('.moves'));
+    document.querySelector('.score-panel ul').className = "stars";
+
+    // Creates star icons
+    for (let i = 0; i < 3; i++) {
+        // Selects stars
+        const stars = document.querySelector('.stars');
+
+        // Creates li element
+        const newLi = document.createElement('li');
+
+        // Creates i element
+        const newI = document.createElement('i');
+
+        // Appends new li element to stars ul element
+        stars.appendChild(newLi);
+
+        // Appends a new i element to the newly appended li element
+        document.querySelectorAll('.stars li')[i].appendChild(newI);
+
+        // Adds a class to the newly appended i element
+        document.querySelectorAll('.stars li i')[i].className = "fa fa-star";
+    }
+
+
+
+
+});
+
 // Function to display a card's symbol by adding a class to it
 const showCardSymbol = (card) => {
     card.classList.add("open", "show");
@@ -207,18 +266,4 @@ blankCards.forEach( (card) => {
 
         starRating();
     });
-});
-
-// Select restart button
-const restartButton = document.querySelector('.restart');
-
-// Add click event to restart button
-restartButton.addEventListener("click", (event) => {
-
-    // Select and remove current deck board
-    const cardDeck = document.querySelector('.deck')
-    divContainer.removeChild(cardDeck);
-
-    // Build new board
-    prepareGame();
 });
