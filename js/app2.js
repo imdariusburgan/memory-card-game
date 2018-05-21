@@ -31,7 +31,7 @@ const hour = Math.floor(totalSeconds /3600);
 const minute = Math.floor((totalSeconds - hour*3600)/60);
 const seconds = totalSeconds - (hour*3600 + minute*60);
 
-document.querySelector(".time").innerHTML = seconds;
+document.querySelector(".time").innerHTML = `${minute} minute(s) ${seconds} second(s)`;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -47,6 +47,34 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+const doCardsMatch = () => {
+    const blankCards = document.querySelectorAll('.card');
+    blankCards.forEach( (card) => {
+        card.addEventListener("click", (event) => {
+            showCardSymbol(card);
+            addCardToOpenList(card);
+
+            if (cardCompareList.length == 2) {
+
+                const clickedCards = document.querySelectorAll(".open");
+
+                if (cardCompareList[0] == cardCompareList[1] ) {
+                    correctlyMatched(clickedCards);
+                } else {
+                    inCorrectlyMatched(clickedCards);
+                }
+
+                increaseMoves();
+            }
+            setTimeout ( () => {
+                congrats();
+            }, 0);
+
+            starRating();
+        });
+    });
 }
 
 const prepareGame = () => {
@@ -90,6 +118,11 @@ const prepareGame = () => {
     for (let i = 0; i < cardIcons.length; i++) {
         cardIcons[i].className += shuffleCards[i];
     };
+
+    // Function to show card symbols when clicked, add them to an array, 
+    // check to see if they match, and if so lock them. If not, flip them over.
+    doCardsMatch();
+
 }
 
 // This call the function to start the game
@@ -149,8 +182,7 @@ restartButton.addEventListener("click", (event) => {
         document.querySelectorAll('.stars li i')[i].className = "fa fa-star";
     }
 
-
-
+    doCardsMatch();
 
 });
 
@@ -239,31 +271,3 @@ const starRating = () => {
 
     }
 }
-
-// Function to show card symbols when clicked, add them to an array, 
-// check to see if they match, and if so lock them. If not, flip them over.
-const blankCards = document.querySelectorAll('.card');
-blankCards.forEach( (card) => {
-    card.addEventListener("click", (event) => {
-        showCardSymbol(card);
-        addCardToOpenList(card);
-
-        if (cardCompareList.length == 2) {
-
-            const clickedCards = document.querySelectorAll(".open");
-
-            if (cardCompareList[0] == cardCompareList[1] ) {
-                correctlyMatched(clickedCards);
-            } else {
-                inCorrectlyMatched(clickedCards);
-            }
-
-            increaseMoves();
-        }
-        setTimeout ( () => {
-            congrats();
-        }, 0);
-
-        starRating();
-    });
-});
