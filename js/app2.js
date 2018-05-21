@@ -25,7 +25,6 @@ const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, b
 const launchGame = () => {
 
     prepareGame();
-    timerFunction();
 
 }
 
@@ -70,6 +69,8 @@ const prepareGame = () => {
     for (let i = 0; i < cardIcons.length; i++) {
         cardIcons[i].className += shuffleCards[i];
     };
+
+    timerFunction();
 }
 
 // Function to display a card's symbol
