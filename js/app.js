@@ -95,7 +95,8 @@ const inCorrectlyMatched = (clickedCards) => {
 }
 
 /*
- * Function to alert the user that they've won the game once all cards have been matched.
+ * Function to alert the user that they've won the game 
+ * once all cards have been matched.
  */
 const congrats = () => {
     if (document.querySelectorAll('.match').length === 16) {
