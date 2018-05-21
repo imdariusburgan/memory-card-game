@@ -8,8 +8,6 @@ const movesCounter = document.querySelector(".moves");
 // An empty list to store clicked cards for match comparison
 let cardCompareList = [];
 
-const blankCards = document.querySelectorAll('.card');
-
 
 // Different card types
 const diamond = "diamond";
@@ -52,6 +50,7 @@ const prepareGame = () => {
      * to it without fully completing the class name. The class name will be
      * completed once the cards are shuffled.
      */  
+    const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
         let uniqueCard = document.createElement('i');
         card.appendChild(uniqueCard).className = "fa fa-";
@@ -71,8 +70,21 @@ const prepareGame = () => {
         cardIcons[i].className += shuffleCards[i];
     };
 
-    timerFunction();
+    // Timer function from https://stackoverflow.com/questions/5517597/
+    let timerVar = setInterval(countTimer, 1000);
+    let totalSeconds = 0;
+    function countTimer() {
+    ++totalSeconds;
+    const hour = Math.floor(totalSeconds /3600);
+    const minute = Math.floor((totalSeconds - hour*3600)/60);
+    const seconds = totalSeconds - (hour*3600 + minute*60);
+
+    document.querySelector(".time").innerHTML = seconds;
+    }
 }
+
+// This call the function to start the game
+launchGame();
 
 // Function to display a card's symbol
 const showCardSymbol = (card) => {
@@ -111,20 +123,6 @@ const correctlyMatched = (clickedCards) => {
 
     // clear the array holding the 2 cards being compared.
     cardCompareList = [];
-}
-
-// Timer function from https://stackoverflow.com/questions/5517597/
-const timerFunction = () => {
-    let timerVar = setInterval(countTimer, 1000);
-    let totalSeconds = 0;
-    function countTimer() {
-    ++totalSeconds;
-    const hour = Math.floor(totalSeconds /3600);
-    const minute = Math.floor((totalSeconds - hour*3600)/60);
-    const seconds = totalSeconds - (hour*3600 + minute*60);
-
-    document.querySelector(".time").innerHTML = seconds;
-    }
 }
 
 
@@ -183,36 +181,35 @@ const starRating = () => {
     }
 }
 
-// Function to show card symbols when clicked, add them to an array, 
-// check to see if they match, and if so lock them. If not, flip them over.
-const doCardsMatch = () => {
-    blankCards.forEach( (card) => {
-        card.addEventListener("click", (event) => {
-            showCardSymbol(card);
-            addCardToOpenList(card);
-
-            if (cardCompareList.length == 2) {
-
-                const clickedCards = document.querySelectorAll(".open");
-
-                if (cardCompareList[0] == cardCompareList[1] ) {
-                    correctlyMatched(clickedCards);
-                } else {
-                    inCorrectlyMatched(clickedCards);
-                }
-
-                increaseMoves();
-            }
-            setTimeout ( () => {
-                congrats();
-            }, 0);
-
-            starRating();
-        });
-    });
-    console.log('doCardsMatch is working');
-}
-
 // This call the function to start the game
 launchGame();
-doCardsMatch();
+
+// Function to show card symbols when clicked, add them to an array, 
+// check to see if they match, and if so lock them. If not, flip them over.
+const blankCards = document.querySelectorAll('.card');
+blankCards.forEach( (card) => {
+    card.addEventListener("click", (event) => {
+        console.log('click event is working');
+        showCardSymbol(card);
+        addCardToOpenList(card);
+
+        if (cardCompareList.length == 2) {
+
+            const clickedCards = document.querySelectorAll(".open");
+
+            if (cardCompareList[0] == cardCompareList[1] ) {
+                correctlyMatched(clickedCards);
+            } else {
+                inCorrectlyMatched(clickedCards);
+            }
+
+            increaseMoves();
+        }
+        setTimeout ( () => {
+            congrats();
+        }, 0);
+
+        starRating();
+    });
+});
+console.log('doCardsMatch is working');
