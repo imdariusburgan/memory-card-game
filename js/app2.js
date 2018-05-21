@@ -8,6 +8,9 @@ const movesCounter = document.querySelector(".moves");
 // An empty list to store clicked cards for match comparison
 let cardCompareList = [];
 
+const blankCards = document.querySelectorAll('.card');
+
+
 // Different card types
 const diamond = "diamond";
 const paperPlane = "paper-plane-o";
@@ -25,7 +28,6 @@ const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, b
 const launchGame = () => {
 
     prepareGame();
-
 }
 
 const prepareGame = () => {
@@ -50,7 +52,6 @@ const prepareGame = () => {
      * to it without fully completing the class name. The class name will be
      * completed once the cards are shuffled.
      */  
-    const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
         let uniqueCard = document.createElement('i');
         card.appendChild(uniqueCard).className = "fa fa-";
@@ -214,3 +215,4 @@ const doCardsMatch = () => {
 
 // This call the function to start the game
 launchGame();
+doCardsMatch();
