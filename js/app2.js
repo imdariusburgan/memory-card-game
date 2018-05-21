@@ -208,3 +208,17 @@ blankCards.forEach( (card) => {
         starRating();
     });
 });
+
+// Select restart button
+const restartButton = document.querySelector('.restart');
+
+// Add click event to restart button
+restartButton.addEventListener("click", (event) => {
+
+    // Select and remove current deck board
+    const cardDeck = document.querySelector('.deck')
+    divContainer.removeChild(cardDeck);
+
+    // Build new board
+    prepareGame();
+});
