@@ -181,9 +181,6 @@ const starRating = () => {
     }
 }
 
-// This call the function to start the game
-launchGame();
-
 // Function to show card symbols when clicked, add them to an array, 
 // check to see if they match, and if so lock them. If not, flip them over.
 const blankCards = document.querySelectorAll('.card');
