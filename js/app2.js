@@ -22,12 +22,6 @@ const bomb = "bomb";
 // An array of all cards types in deck
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
 
-
-const launchGame = () => {
-
-    prepareGame();
-}
-
 const prepareGame = () => {
     // Create game table/deck and append to page
     const createCardDeck = document.createElement("ul");
@@ -84,7 +78,7 @@ const prepareGame = () => {
 }
 
 // This call the function to start the game
-launchGame();
+prepareGame();
 
 // Function to display a card's symbol
 const showCardSymbol = (card) => {
