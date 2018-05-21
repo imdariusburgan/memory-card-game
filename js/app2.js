@@ -186,7 +186,6 @@ const starRating = () => {
 const blankCards = document.querySelectorAll('.card');
 blankCards.forEach( (card) => {
     card.addEventListener("click", (event) => {
-        console.log('click event is working');
         showCardSymbol(card);
         addCardToOpenList(card);
 
@@ -209,4 +208,3 @@ blankCards.forEach( (card) => {
         starRating();
     });
 });
-console.log('doCardsMatch is working');
