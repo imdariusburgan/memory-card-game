@@ -22,6 +22,33 @@ const bomb = "bomb";
 // An array of all cards types in deck
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
 
+// Timer function from https://stackoverflow.com/questions/5517597/
+let timerVar = setInterval(countTimer, 1000);
+let totalSeconds = 0;
+function countTimer() {
+++totalSeconds;
+const hour = Math.floor(totalSeconds /3600);
+const minute = Math.floor((totalSeconds - hour*3600)/60);
+const seconds = totalSeconds - (hour*3600 + minute*60);
+
+document.querySelector(".time").innerHTML = seconds;
+}
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 const prepareGame = () => {
     // Create game table/deck and append to page
     const createCardDeck = document.createElement("ul");
@@ -63,24 +90,12 @@ const prepareGame = () => {
     for (let i = 0; i < cardIcons.length; i++) {
         cardIcons[i].className += shuffleCards[i];
     };
-
-    // Timer function from https://stackoverflow.com/questions/5517597/
-    let timerVar = setInterval(countTimer, 1000);
-    let totalSeconds = 0;
-    function countTimer() {
-    ++totalSeconds;
-    const hour = Math.floor(totalSeconds /3600);
-    const minute = Math.floor((totalSeconds - hour*3600)/60);
-    const seconds = totalSeconds - (hour*3600 + minute*60);
-
-    document.querySelector(".time").innerHTML = seconds;
-    }
 }
 
 // This call the function to start the game
 prepareGame();
 
-// Function to display a card's symbol
+// Function to display a card's symbol by adding a class to it
 const showCardSymbol = (card) => {
     card.classList.add("open", "show");
 }
@@ -119,20 +134,11 @@ const correctlyMatched = (clickedCards) => {
     cardCompareList = [];
 }
 
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
+// Function to increase the moves counter
+const increaseMoves = () => {
+    let currentMoves = parseInt(movesCounter.innerHTML);
+    let newScore = currentMoves + 1;
+    movesCounter.innerHTML = newScore;
 }
 
 /*
