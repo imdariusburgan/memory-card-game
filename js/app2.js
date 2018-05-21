@@ -182,8 +182,6 @@ restartButton.addEventListener("click", (event) => {
         document.querySelectorAll('.stars li i')[i].className = "fa fa-star";
     }
 
-    doCardsMatch();
-
 });
 
 // Function to display a card's symbol by adding a class to it
