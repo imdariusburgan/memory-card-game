@@ -1,3 +1,4 @@
+// TO-DO: Clear array holding clicked cards upon resetting game
 // TO-DO: Refactor code and make it more organized / readable
 // TO-DO: Add CSS animation when cards are clicked, unsuccessfully matched, and successfully matched
 // TO-DO: Store game's current state by using local storage
