@@ -68,24 +68,16 @@ const starRating = () => {
 
     // Select the list that holds the stars
     const starsList = document.querySelector(".stars")
-
+    const starIcon = document.querySelector(".fa-star");
     /*
      * If number of moves equal 10, the player will be bumped down to 2 stars
      * If number of moves equal 15, the player will be bumped down to 1 stars
      * If number of moves equal 20, the player will be bumped down to 0 stars
      */
 
-   if (movesCounter.textContent == 10) {
+   if (movesCounter.textContent == 10 || movesCounter.textContent == 15 || movesCounter.textContent == 20) {
 
-        starsList.removeChild(starsList.children[0]);
-
-    } else if (movesCounter.textContent == 15) {
-
-        starsList.removeChild(starsList.children[0]);
-
-    } else if (movesCounter.textContent == 20) {
-
-        starsList.removeChild(starsList.children[0]);
+        starIcon.remove();
 
     }
 }
