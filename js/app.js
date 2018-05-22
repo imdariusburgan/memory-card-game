@@ -168,23 +168,11 @@ const restartGame = () => {
     const cardDeck = document.querySelector('.deck')
     divContainer.removeChild(cardDeck);
 
-    // Build new board
     prepareGame();
 
     resetTimer();
 
-    // Sets moves counter back to 0
-    movesCounter.innerHTML = 0;
-
-    // Removes number of stars
-    const scorePanel = document.querySelector('.score-panel')
-    const stars = document.querySelector('.stars')
-    scorePanel.removeChild(stars);
-
-    // Creates stars ul element
-    const newStars = document.createElement('ul')
-    scorePanel.insertBefore(newStars, document.querySelector('.moves'));
-    document.querySelector('.score-panel ul').className = "stars";
+    resetMovesAndStars();
 
     // Creates star icons
     for (let i = 0; i < 3; i++) {
@@ -219,6 +207,23 @@ const resetTimer = () => {
     // Start new timer
     totalSeconds = 0;
     timerVar = setInterval(countTimer, 1000);
+}
+
+const resetMovesAndStars = () => {
+
+    // Sets moves counter back to 0
+    movesCounter.innerHTML = 0;
+
+    // Removes number of stars
+    const scorePanel = document.querySelector('.score-panel')
+    const stars = document.querySelector('.stars')
+    scorePanel.removeChild(stars);
+
+    // Creates stars ul element
+    const newStars = document.createElement('ul')
+    scorePanel.insertBefore(newStars, document.querySelector('.moves'));
+    document.querySelector('.score-panel ul').className = "stars";
+
 }
 
 // Function to display a card's symbol by adding a class to it
