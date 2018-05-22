@@ -29,16 +29,18 @@ const bomb = "bomb";
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
 
 // Timer function from https://stackoverflow.com/questions/5517597/
+const countTimer = () => {
+    ++totalSeconds;
+    const hour = Math.floor(totalSeconds /3600);
+    const minute = Math.floor((totalSeconds - hour*3600)/60);
+    const seconds = totalSeconds - (hour*3600 + minute*60);
+
+    document.querySelector(".time").innerHTML = `${minute} minute(s) ${seconds} second(s)`;
+}
+
+// Global variables for starting and stopping the timer
 let timerVar = setInterval(countTimer, 1000);
 let totalSeconds = 0;
-function countTimer() {
-++totalSeconds;
-const hour = Math.floor(totalSeconds /3600);
-const minute = Math.floor((totalSeconds - hour*3600)/60);
-const seconds = totalSeconds - (hour*3600 + minute*60);
-
-document.querySelector(".time").innerHTML = `${minute} minute(s) ${seconds} second(s)`;
-}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -59,6 +61,8 @@ function shuffle(array) {
 // based on how many moves they've completed.
 const starRating = () => {
 
+    console.log('star rating is working');
+
     // Select the list that holds the stars
     const starsList = document.querySelector(".stars")
 
@@ -68,15 +72,15 @@ const starRating = () => {
      * If number of moves equal 20, the player will be bumped down to 0 stars
      */
 
-   if (parseInt(movesCounter.textContent) === 10) {
+   if (movesCounter.textContent == 10) {
 
         starsList.removeChild(starsList.childNodes[0]);
 
-    } else if (parseInt(movesCounter.textContent) === 15) {
+    } else if (movesCounter.textContent == 15) {
 
         starsList.removeChild(starsList.childNodes[0]);
 
-    } else if (parseInt(movesCounter.textContent) === 20) {
+    } else if (movesCounter.textContent == 20) {
 
         starsList.removeChild(starsList.childNodes[0]);
 
@@ -157,8 +161,6 @@ const prepareGame = () => {
     doCardsMatch();
 
 }
-
-// This call the function to start the game
 prepareGame();
 
 const restartGame = () => {
@@ -170,12 +172,15 @@ const restartGame = () => {
     // Stop timer
     clearInterval(timerVar);
 
-    // Build new board
-    prepareGame();
+    // Reset timer
+    document.querySelector(".time").innerHTML = " ";
 
-    // Restart timer
+    // Start new timer
     totalSeconds = 0;
     timerVar = setInterval(countTimer, 1000);
+
+    // Build new board
+    prepareGame();
 
     // Sets moves counter back to 0
     movesCounter.innerHTML = 0;
