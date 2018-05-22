@@ -168,18 +168,10 @@ const restartGame = () => {
     const cardDeck = document.querySelector('.deck')
     divContainer.removeChild(cardDeck);
 
-    // Stop timer
-    clearInterval(timerVar);
-
-    // Reset timer
-    document.querySelector(".time").innerHTML = " ";
-
-    // Start new timer
-    totalSeconds = 0;
-    timerVar = setInterval(countTimer, 1000);
-
     // Build new board
     prepareGame();
+
+    resetTimer();
 
     // Sets moves counter back to 0
     movesCounter.innerHTML = 0;
@@ -214,6 +206,19 @@ const restartGame = () => {
         // Adds a class to the newly appended i element
         document.querySelectorAll('.stars li i')[i].className = "fa fa-star";
     }
+}
+
+const resetTimer = () => {
+
+    // Stop timer
+    clearInterval(timerVar);
+
+    // Reset timer
+    document.querySelector(".time").innerHTML = " ";
+
+    // Start new timer
+    totalSeconds = 0;
+    timerVar = setInterval(countTimer, 1000);
 }
 
 // Function to display a card's symbol by adding a class to it
