@@ -1,4 +1,3 @@
-
 // Select Div Container
 const divContainer = document.querySelector(".container");
 
@@ -8,6 +7,13 @@ const movesCounter = document.querySelector(".moves");
 // An empty list to store clicked cards for match comparison
 let cardCompareList = [];
 
+// Select restart button
+const restartButton = document.querySelector('.restart');
+
+// When user clicks the button to restart the game, the restartGame function will run
+restartButton.addEventListener("click", (event) => {
+    restartGame();
+});
 
 // Different card types
 const diamond = "diamond";
@@ -49,6 +55,34 @@ function shuffle(array) {
     return array;
 }
 
+// Function that decrease the user's star rating 
+// based on how many moves they've completed.
+const starRating = () => {
+
+    // Select the list that holds the stars
+    const starsList = document.querySelector(".stars")
+
+    /*
+     * If number of moves equal 10, the player will be bumped down to 2 stars
+     * If number of moves equal 15, the player will be bumped down to 1 stars
+     * If number of moves equal 20, the player will be bumped down to 0 stars
+     */
+
+   if (parseInt(movesCounter.textContent) === 10) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    } else if (parseInt(movesCounter.textContent) === 15) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    } else if (parseInt(movesCounter.textContent) === 20) {
+
+        starsList.removeChild(starsList.childNodes[0]);
+
+    }
+}
+
 const doCardsMatch = () => {
     const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
@@ -67,12 +101,11 @@ const doCardsMatch = () => {
                 }
 
                 increaseMoves();
+                starRating();
             }
             setTimeout ( () => {
                 congrats();
             }, 0);
-
-            starRating();
         });
     });
 }
@@ -128,11 +161,7 @@ const prepareGame = () => {
 // This call the function to start the game
 prepareGame();
 
-// Select restart button
-const restartButton = document.querySelector('.restart');
-
-// Add click event to restart button
-restartButton.addEventListener("click", (event) => {
+const restartGame = () => {
 
     // Select and remove current deck board
     const cardDeck = document.querySelector('.deck')
@@ -181,8 +210,7 @@ restartButton.addEventListener("click", (event) => {
         // Adds a class to the newly appended i element
         document.querySelectorAll('.stars li i')[i].className = "fa fa-star";
     }
-
-});
+}
 
 // Function to display a card's symbol by adding a class to it
 const showCardSymbol = (card) => {
@@ -242,30 +270,3 @@ const congrats = () => {
 };
 
 
-// Function that decrease the user's star rating 
-// based on how many moves they've completed.
-const starRating = () => {
-
-    // Select the list that holds the stars
-    const starsList = document.querySelector(".stars")
-
-    /*
-     * If number of moves equal 10, the player will be bumped down to 2 stars
-     * If number of moves equal 15, the player will be bumped down to 1 stars
-     * If number of moves equal 20, the player will be bumped down to 0 stars
-     */
-
-   if (parseInt(movesCounter.innerHTML) === 10) {
-
-        starsList.removeChild(starsList.childNodes[0]);
-
-    } else if (parseInt(movesCounter.innerHTML) === 15) {
-
-        starsList.removeChild(starsList.childNodes[0]);
-
-    } else if (parseInt(movesCounter.innerHTML) === 20) {
-
-        starsList.removeChild(starsList.childNodes[0]);
-
-    }
-}
