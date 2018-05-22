@@ -174,6 +174,38 @@ const restartGame = () => {
 
     resetMovesAndStars();
 
+}
+
+// This function resets the timer
+const resetTimer = () => {
+
+    // Stop timer
+    clearInterval(timerVar);
+
+    // Reset timer
+    document.querySelector(".time").innerHTML = " ";
+
+    // Start new timer
+    totalSeconds = 0;
+    timerVar = setInterval(countTimer, 1000);
+}
+
+// This function resets the moves counter and stars
+const resetMovesAndStars = () => {
+
+    // Sets moves counter back to 0
+    movesCounter.innerHTML = 0;
+
+    // Removes number of stars
+    const scorePanel = document.querySelector('.score-panel')
+    const stars = document.querySelector('.stars')
+    scorePanel.removeChild(stars);
+
+    // Creates stars ul element
+    const newStars = document.createElement('ul')
+    scorePanel.insertBefore(newStars, document.querySelector('.moves'));
+    document.querySelector('.score-panel ul').className = "stars";
+
     // Creates star icons
     for (let i = 0; i < 3; i++) {
         // Selects stars
@@ -194,35 +226,6 @@ const restartGame = () => {
         // Adds a class to the newly appended i element
         document.querySelectorAll('.stars li i')[i].className = "fa fa-star";
     }
-}
-
-const resetTimer = () => {
-
-    // Stop timer
-    clearInterval(timerVar);
-
-    // Reset timer
-    document.querySelector(".time").innerHTML = " ";
-
-    // Start new timer
-    totalSeconds = 0;
-    timerVar = setInterval(countTimer, 1000);
-}
-
-const resetMovesAndStars = () => {
-
-    // Sets moves counter back to 0
-    movesCounter.innerHTML = 0;
-
-    // Removes number of stars
-    const scorePanel = document.querySelector('.score-panel')
-    const stars = document.querySelector('.stars')
-    scorePanel.removeChild(stars);
-
-    // Creates stars ul element
-    const newStars = document.createElement('ul')
-    scorePanel.insertBefore(newStars, document.querySelector('.moves'));
-    document.querySelector('.score-panel ul').className = "stars";
 
 }
 
