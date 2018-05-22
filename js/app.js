@@ -1,3 +1,9 @@
+// TO-DO LIST
+// 1. Refactor code and make it more organized / readable
+// 2. Add CSS animation when cards are clicked, unsuccessfully matched, and successfully matched
+// 3. Store game's current state by using local storage
+// 4. Add keyboard shortcut to restart game
+
 // Select Div Container
 const divContainer = document.querySelector(".container");
 
