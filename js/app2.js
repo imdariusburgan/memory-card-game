@@ -89,8 +89,12 @@ const doCardsMatch = () => {
     const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
         card.addEventListener("click", (event) => {
-            showCardSymbol(card);
-            addCardToOpenList(card);
+            if (card.classList.contains('show') || card.classList.contains('match') ) {
+                null;
+            } else {
+                showCardSymbol(card);
+                addCardToOpenList(card);
+            }
 
             if (cardCompareList.length == 2) {
 
