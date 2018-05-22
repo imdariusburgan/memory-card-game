@@ -61,8 +61,6 @@ function shuffle(array) {
 // based on how many moves they've completed.
 const starRating = () => {
 
-    console.log('star rating is working');
-
     // Select the list that holds the stars
     const starsList = document.querySelector(".stars")
 
@@ -73,19 +71,16 @@ const starRating = () => {
      */
 
    if (movesCounter.textContent == 10) {
-        console.log('star rating 10 is working');
 
-        starsList.removeChild(starsList.childNodes[0]);
+        starsList.removeChild(starsList.children[0]);
 
     } else if (movesCounter.textContent == 15) {
-        console.log('star rating 15 is working');
 
-        starsList.removeChild(starsList.childNodes[0]);
+        starsList.removeChild(starsList.children[0]);
 
     } else if (movesCounter.textContent == 20) {
-        console.log('star rating 20 is working');
 
-        starsList.removeChild(starsList.childNodes[0]);
+        starsList.removeChild(starsList.children[0]);
 
     }
 }
