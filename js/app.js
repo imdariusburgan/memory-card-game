@@ -29,7 +29,7 @@ const bomb = "bomb";
 // An array of all cards types in deck
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
 
-// Global variables for starting and stopping the timer
+// Variables for starting and stopping the timer
 let timerVar = setInterval(countTimer, 1000);
 let totalSeconds = 0;
 
@@ -37,6 +37,12 @@ let totalSeconds = 0;
 restartButton.addEventListener("click", (event) => {
     restartGame();
 });
+
+/*
+ *
+ * FUNCTIONS NEEDED TO RUN THE GAME
+ * 
+ */
 
 // Timer function from https://stackoverflow.com/questions/5517597/
 const countTimer = () => {
@@ -63,8 +69,7 @@ function shuffle(array) {
     return array;
 }
 
-// Function that decrease the user's star rating 
-// based on how many moves they've completed.
+// This function decreases the user's star rating based on how many moves they've completed.
 const starRating = () => {
 
     // Select the list that holds the stars
@@ -83,6 +88,7 @@ const starRating = () => {
     }
 }
 
+// This function checks to see if 2 clicked cards match
 const doCardsMatch = () => {
     const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
@@ -114,6 +120,7 @@ const doCardsMatch = () => {
     });
 }
 
+// This function prepares the game to be played
 const prepareGame = () => {
 
     // Function to build the game board, shuffle the cards, and add them to the board
@@ -125,7 +132,7 @@ const prepareGame = () => {
 
 }
 
-
+// This function restarts the game, timer, moves counter, and stars
 const restartGame = () => {
 
     // Remove current game board
@@ -139,6 +146,7 @@ const restartGame = () => {
 
 }
 
+// This function creates the game's board, shuffles the cards, and adds them to the board
 const buildDeck = () => {
 
     // Create game table/deck and append to page
@@ -237,13 +245,12 @@ const resetMovesAndStars = () => {
 
 }
 
-// Function to display a card's symbol by adding a class to it
+// This function displays a card's symbol by adding a class to it
 const showCardSymbol = (card) => {
     card.classList.add("open", "show");
 }
 
-// Function to move any card that's clicked to a 
-// list of open cards in order to compare for matches.
+// Function to move any card that's clicked to a list of open cards in order to compare for matches.
 const addCardToOpenList = (card) => {
     cardCompareList.push(card.firstChild.classList.value);
 }
@@ -283,8 +290,7 @@ const increaseMoves = () => {
     movesCounter.innerHTML = newScore;
 }
 
-// Function to alert the user that they've won 
-// the game once all cards have been matched.
+// Function to alert the user that they've won the game once all cards have been matched.
 const congrats = () => {
     if (document.querySelectorAll('.match').length === 16) {
         clearInterval(timerVar);
@@ -292,5 +298,10 @@ const congrats = () => {
     }
 };
 
+/*
+ *
+ * RUN THE GAME
+ * 
+ */
 
 prepareGame();
