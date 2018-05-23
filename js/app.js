@@ -29,10 +29,6 @@ const bomb = "bomb";
 // An array of all cards types in deck
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
 
-// Variables for starting and stopping the timer
-let timerVar = setInterval(countTimer, 1000);
-let totalSeconds = 0;
-
 // When user clicks the button to restart the game, the restartGame function will run
 restartButton.addEventListener("click", (event) => {
     restartGame();
@@ -53,6 +49,9 @@ const countTimer = () => {
 
     document.querySelector(".time").innerHTML = `${minute} minute(s) ${seconds} second(s)`;
 }
+// Variables for starting and stopping the timer
+let timerVar = setInterval(countTimer, 1000);
+let totalSeconds = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
