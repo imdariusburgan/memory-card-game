@@ -29,6 +29,10 @@ const bomb = "bomb";
 // An array of all cards types in deck
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
 
+// Global variables for starting and stopping the timer
+let timerVar = setInterval(countTimer, 1000);
+let totalSeconds = 0;
+
 // When user clicks the button to restart the game, the restartGame function will run
 restartButton.addEventListener("click", (event) => {
     restartGame();
@@ -43,10 +47,6 @@ const countTimer = () => {
 
     document.querySelector(".time").innerHTML = `${minute} minute(s) ${seconds} second(s)`;
 }
-
-// Global variables for starting and stopping the timer
-let timerVar = setInterval(countTimer, 1000);
-let totalSeconds = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -283,10 +283,8 @@ const increaseMoves = () => {
     movesCounter.innerHTML = newScore;
 }
 
-/*
- * Function to alert the user that they've won 
- * the game once all cards have been matched.
- */
+// Function to alert the user that they've won 
+// the game once all cards have been matched.
 const congrats = () => {
     if (document.querySelectorAll('.match').length === 16) {
         clearInterval(timerVar);
