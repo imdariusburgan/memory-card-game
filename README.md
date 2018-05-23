@@ -1,4 +1,4 @@
-# Memory Game Project
+# Memory Matching Card Game
 
 This is a card matching game that requires you to match all of the cards in order to win.
 
@@ -11,3 +11,8 @@ This is a card matching game that requires you to match all of the cards in orde
 2. Click a card to flip it over and show it's symbol
 3. Click another card that you think matches the first card's symbol
 4. Continue doing that until you've matched all the cards and won.
+
+## Resources
+
+1. When creating the timer for the game, [this answer on StackOverflow](https://stackoverflow.com/a/34748056) was used to help create the timer
+2. The code for shuffling the cards in the deck was taken from [this answer on StackOverflow](http://stackoverflow.com/a/2450976)
