@@ -137,6 +137,9 @@ const restartGame = () => {
     // Remove current game board
     document.querySelector('.deck').remove();
 
+    // Clear the list used to compare 2 clicked cards
+    cardCompareList = [];
+
     prepareGame();
 
     resetTimer();
