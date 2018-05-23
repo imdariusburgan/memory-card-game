@@ -295,7 +295,7 @@ const increaseMoves = () => {
 
 // Function to alert the user that they've won the game once all cards have been matched.
 const congrats = () => {
-    if (document.querySelectorAll('.match').length === 0) {
+    if (document.querySelectorAll('.match').length === 16) {
         clearInterval(timerVar);
         //alert(`Congratulations! It took you ${document.querySelector('.time').innerHTML} and ${movesCounter.innerHTML} moves to win!`)
 
