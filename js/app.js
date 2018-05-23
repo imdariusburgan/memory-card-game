@@ -164,9 +164,8 @@ prepareGame();
 
 const restartGame = () => {
 
-    // Select and remove current deck board
-    const cardDeck = document.querySelector('.deck')
-    divContainer.removeChild(cardDeck);
+    // Remove current game board
+    document.querySelector('.deck').remove();
 
     prepareGame();
 
