@@ -137,16 +137,16 @@ header {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background:linear-gradient(160deg, #02ccba 0%, #b18ece 100%);
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 5px solid #333;
     width: 40%;
 }
 
 /* The Close Button */
 .close {
-    color: #aaa;
+    color: #000;
     float: right;
     font-size: 28px;
     font-weight: bold;
