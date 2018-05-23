@@ -297,7 +297,22 @@ const increaseMoves = () => {
 const congrats = () => {
     if (document.querySelectorAll('.match').length === 16) {
         clearInterval(timerVar);
-        alert(`Congratulations! It took you ${document.querySelector('.time').innerHTML} seconds and ${movesCounter.innerHTML} moves to win!`)
+        //alert(`Congratulations! It took you ${document.querySelector('.time').innerHTML} seconds and ${movesCounter.innerHTML} moves to win!`)
+
+        // Select the modal
+        const modalPopup = document.querySelector('.modal');
+
+        // Select the modal's close button
+        const modalCloseBtn = document.querySelector('.close');
+        modalPopup.style.display = "block";
+
+        modalCloseBtn.addEventListener('click', () => {
+
+            modalCloseBtn.style.display = "none";
+
+        })
+
+
     }
 };
 
