@@ -17,3 +17,7 @@ This is a card matching game that requires you to match all of the cards in orde
 
 1. When creating the timer for the game, [this answer on StackOverflow](https://stackoverflow.com/a/34748056) was used to help create the timer
 2. The code for shuffling the cards in the deck was taken from [this answer on StackOverflow](http://stackoverflow.com/a/2450976)
+
+## License
+
+This repository is licensed under the [MIT License](https://opensource.org/licenses/MIT)
