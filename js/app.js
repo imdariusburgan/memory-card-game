@@ -40,7 +40,7 @@ restartButton.addEventListener("click", (event) => {
  * 
  */
 
-// Timer function from https://stackoverflow.com/questions/5517597/
+// Timer function from https://stackoverflow.com/a/34748056
 const countTimer = () => {
     ++totalSeconds;
     const hour = Math.floor(totalSeconds /3600);
