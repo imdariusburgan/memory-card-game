@@ -309,7 +309,7 @@ const congrats = () => {
         const modalParagraph = document.querySelector('p');
 
         // Add content to modal paragraph
-        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML} and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
+        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML}, and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
 
         // Select the restart game button
         const restartGameModalButton = document.querySelector('.restartbtn');
