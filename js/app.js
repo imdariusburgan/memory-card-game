@@ -304,6 +304,10 @@ const congrats = () => {
 
         // Select the modal's close button
         const modalCloseBtn = document.querySelector('.close');
+
+        // Select the modal's paragraph tag
+        const modalParagraph = document.querySelector('')
+
         modalPopup.style.display = "block";
 
         modalCloseBtn.addEventListener('click', () => {
