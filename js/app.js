@@ -48,7 +48,7 @@ const countTimer = () => {
     const minute = Math.floor((totalSeconds - hour*3600)/60);
     const seconds = totalSeconds - (hour*3600 + minute*60);
 
-    document.querySelector('.time').innerHTML = `${minute} minute(s) ${seconds} second(s)`;
+    document.querySelector('.time').innerHTML = `${minute} minute(s) and ${seconds} second(s)`;
 }
 // Variables for starting and stopping the timer
 let timerVar = setInterval(countTimer, 1000);
@@ -295,9 +295,9 @@ const increaseMoves = () => {
 
 // Function to alert the user that they've won the game once all cards have been matched.
 const congrats = () => {
-    if (document.querySelectorAll('.match').length === 16) {
+    if (document.querySelectorAll('.match').length === 0) {
         clearInterval(timerVar);
-        //alert(`Congratulations! It took you ${document.querySelector('.time').innerHTML} seconds and ${movesCounter.innerHTML} moves to win!`)
+        //alert(`Congratulations! It took you ${document.querySelector('.time').innerHTML} and ${movesCounter.innerHTML} moves to win!`)
 
         // Select the modal
         const modalPopup = document.querySelector('.modal');
@@ -306,13 +306,33 @@ const congrats = () => {
         const modalCloseBtn = document.querySelector('.close');
 
         // Select the modal's paragraph tag
-        const modalParagraph = document.querySelector('')
+        const modalParagraph = document.querySelector('p');
 
+        // Add content to modal paragraph
+        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML} and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
+
+        // Select the restart game button
+        const restartGameModalButton = document.querySelector('.restartbtn');
+
+        // Make modal visible
         modalPopup.style.display = "block";
 
+        // Close modal
+        const closeModal = () => {
+            modalPopup.style.display = "none";
+        }
+
+        restartGameModalButton.addEventListener('click', () => {
+
+            closeModal();
+            restartGame();
+
+        })
+
+        // Close modal when the 'X' is clicked
         modalCloseBtn.addEventListener('click', () => {
 
-            modalCloseBtn.style.display = "none";
+            closeModal();
 
         })
 
