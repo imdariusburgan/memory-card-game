@@ -3,6 +3,7 @@
 // TO-DO: Store game's current state by using local storage
 // TO-DO: Add keyboard shortcut to restart game
 
+
 // Select Div Container
 const divContainer = document.querySelector(".container");
 
@@ -14,11 +15,6 @@ let cardCompareList = [];
 
 // Select restart button
 const restartButton = document.querySelector('.restart');
-
-// When user clicks the button to restart the game, the restartGame function will run
-restartButton.addEventListener("click", (event) => {
-    restartGame();
-});
 
 // Different card types
 const diamond = "diamond";
@@ -32,6 +28,11 @@ const bomb = "bomb";
 
 // An array of all cards types in deck
 const cardsInDeck = [diamond, diamond, paperPlane, paperPlane, anchor, anchor, bolt, bolt, cube, cube, leaf, leaf, bicycle, bicycle, bomb, bomb];
+
+// When user clicks the button to restart the game, the restartGame function will run
+restartButton.addEventListener("click", (event) => {
+    restartGame();
+});
 
 // Timer function from https://stackoverflow.com/questions/5517597/
 const countTimer = () => {
@@ -114,6 +115,32 @@ const doCardsMatch = () => {
 }
 
 const prepareGame = () => {
+
+    // Function to build the game board, shuffle the cards, and add them to the board
+    buildDeck();
+
+    // Function to show card symbols when clicked, add them to an array, 
+    // check to see if they match, and if so lock them. If not, flip them over.
+    doCardsMatch();
+
+}
+
+
+const restartGame = () => {
+
+    // Remove current game board
+    document.querySelector('.deck').remove();
+
+    prepareGame();
+
+    resetTimer();
+
+    resetMovesAndStars();
+
+}
+
+const buildDeck = () => {
+
     // Create game table/deck and append to page
     const createCardDeck = document.createElement("ul");
     divContainer.appendChild(createCardDeck).className = "deck";
@@ -131,10 +158,10 @@ const prepareGame = () => {
     }
 
     /*
-     * Create icon html element and append the font-awesome icon class format
-     * to it without fully completing the class name. The class name will be
-     * completed once the cards are shuffled.
-     */  
+        * Create icon html element and append the font-awesome icon class format
+        * to it without fully completing the class name. The class name will be
+        * completed once the cards are shuffled.
+        */  
     const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
         let uniqueCard = document.createElement('i');
@@ -148,30 +175,12 @@ const prepareGame = () => {
     let shuffleCards = shuffle(cardsInDeck);
 
     /* 
-     * Loop through each card's icon HTML element and add a random card type
-     * to the class to complete it's Font-Awesome symbol.
-     */
+        * Loop through each card's icon HTML element and add a random card type
+        * to the class to complete it's Font-Awesome symbol.
+        */
     for (let i = 0; i < cardIcons.length; i++) {
         cardIcons[i].className += shuffleCards[i];
     };
-
-    // Function to show card symbols when clicked, add them to an array, 
-    // check to see if they match, and if so lock them. If not, flip them over.
-    doCardsMatch();
-
-}
-prepareGame();
-
-const restartGame = () => {
-
-    // Remove current game board
-    document.querySelector('.deck').remove();
-
-    prepareGame();
-
-    resetTimer();
-
-    resetMovesAndStars();
 
 }
 
@@ -286,3 +295,4 @@ const congrats = () => {
 };
 
 
+prepareGame();
