@@ -4,7 +4,6 @@
 // TO-DO: Store game's current state by using local storage
 // TO-DO: Add keyboard shortcut to restart game
 
-
 // Select Div Container
 const divContainer = document.querySelector('.container');
 
@@ -50,7 +49,6 @@ const countTimer = () => {
     const hour = Math.floor(totalSeconds /3600);
     const minute = Math.floor((totalSeconds - hour*3600)/60);
     const seconds = totalSeconds - (hour*3600 + minute*60);
-
     document.querySelector('.time').innerHTML = `${minute} minute(s) and ${seconds} second(s)`;
 }
 // Variables for starting and stopping the timer
@@ -60,7 +58,6 @@ let totalSeconds = 0;
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -68,13 +65,11 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
 // This function decreases the user's star rating based on how many moves they've completed.
 const starRating = () => {
-
     const starIcon = document.querySelector('.fa-star');
 
     // If number of moves equal 10, the player will be bumped down to 2 stars
@@ -97,15 +92,12 @@ const doCardsMatch = () => {
             }
 
             if (cardCompareList.length == 2) {
-
                 const clickedCards = document.querySelectorAll('.open');
-
                 if (cardCompareList[0] == cardCompareList[1] ) {
                     correctlyMatched(clickedCards);
                 } else {
                     inCorrectlyMatched(clickedCards);
                 }
-
                 increaseMoves();
                 starRating();
             }
@@ -118,31 +110,23 @@ const doCardsMatch = () => {
 
 // This function prepares the game to be played
 const prepareGame = () => {
-
     // Function to build the game board, shuffle the cards, and add them to the board
     buildDeck();
 
-    // Function to show card symbols when clicked, add them to an array, 
-    // check to see if they match, and if so lock them. If not, flip them over.
+    // Function to show card symbols when clicked, add them to an array, check to see if they match, and if so lock them. If not, flip them over.
     doCardsMatch();
-
 }
 
 // This function restarts the game, timer, moves counter, and stars
 const restartGame = () => {
-
     // Remove current game board
     document.querySelector('.deck').remove();
 
     // Clear the list used to compare 2 clicked cards
     cardCompareList = [];
-
     prepareGame();
-
     resetTimer();
-
     resetMovesAndStars();
-
 }
 
 // This function creates the game's board, shuffles the cards, and adds them to the board
@@ -164,11 +148,7 @@ const buildDeck = () => {
         cardDeck.appendChild(blankCard).className = 'card';
     }
 
-    /*
-        * Create icon html element and append the font-awesome icon class format
-        * to it without fully completing the class name. The class name will be
-        * completed once the cards are shuffled.
-        */  
+    // Create icon html element and append the font-awesome icon class format to it without fully completing the class name. The class name will be completed once the cards are shuffled.
     const blankCards = document.querySelectorAll('.card');
     blankCards.forEach( (card) => {
         let uniqueCard = document.createElement('i');
@@ -181,19 +161,14 @@ const buildDeck = () => {
     // Shuffle cards
     let shuffleCards = shuffle(cardsInDeck);
 
-    /* 
-        * Loop through each card's icon HTML element and add a random card type
-        * to the class to complete it's Font-Awesome symbol.
-        */
+    // Loop through each card's icon HTML element and add a random card type to the class to complete it's Font-Awesome symbol.
     for (let i = 0; i < cardIcons.length; i++) {
         cardIcons[i].className += shuffleCards[i];
     };
-
 }
 
 // This function resets the timer
 const resetTimer = () => {
-
     // Stop timer
     clearInterval(timerVar);
 
@@ -207,7 +182,6 @@ const resetTimer = () => {
 
 // This function resets the moves counter and stars
 const resetMovesAndStars = () => {
-
     // Sets moves counter back to 0
     movesCounter.innerHTML = 0;
 
@@ -241,7 +215,6 @@ const resetMovesAndStars = () => {
         // Adds a class to the newly appended i element
         document.querySelectorAll('.stars li i')[i].className = 'fa fa-star';
     }
-
 }
 
 // This function displays a card's symbol by adding a class to it
@@ -264,7 +237,6 @@ const inCorrectlyMatched = (clickedCards) => {
 
         // clear the array holding the 2 cards being compared
         cardCompareList = [];
-
     }, 200);
 }
 
@@ -293,7 +265,6 @@ const increaseMoves = () => {
 const congrats = () => {
     if (document.querySelectorAll('.match').length === 16) {
         clearInterval(timerVar);
-        //alert(`Congratulations! It took you ${document.querySelector('.time').innerHTML} and ${movesCounter.innerHTML} moves to win!`)
 
         // Select the modal
         const modalPopup = document.querySelector('.modal');
@@ -308,7 +279,7 @@ const congrats = () => {
         const numberOfStars = starsList.children.length;
 
         // Add content to modal paragraph
-        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML}, ${numberOfStars} stars, and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
+        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML}, ${numberOfStars} star(s), and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
 
         // Select the restart game button
         const restartGameModalButton = document.querySelector('.restartbtn');
@@ -322,20 +293,14 @@ const congrats = () => {
         }
 
         restartGameModalButton.addEventListener('click', () => {
-
             closeModal();
             restartGame();
-
         })
 
         // Close modal when the 'X' is clicked
         modalCloseBtn.addEventListener('click', () => {
-
             closeModal();
-
         })
-
-
     }
 };
 
