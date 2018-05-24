@@ -3,11 +3,11 @@
 This is a card matching game that requires you to match all of the cards in order to win.
 
 ## Memory Game preview
-![Memory Game screenshot](https://github.com/imdariusburgan/udacity-memory-card-game/blob/master/img/game-screenshot.PNG)
+![Memory Game screenshot](https://github.com/imdariusburgan/udacity-memory-card-game/blob/master/img/memory-card-game-screenshot.PNG)
 
 ## Instructions
 
-1. Load the project up and start playing by going here: https://imdariusburgan.github.io/udacity-memory-card-game/
+1. Load the project up and start playing by going here: [https://imdariusburgan.github.io/memory-card-game/](https://imdariusburgan.github.io/memory-card-game/)
 2. Click a card to flip it over and show it's symbol
 3. Click another card that you think matches the first card's symbol
 4. Continue clicking cards until you've matched all the cards and won
