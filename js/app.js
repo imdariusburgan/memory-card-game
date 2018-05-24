@@ -17,6 +17,9 @@ let cardCompareList = [];
 // Select restart button
 const restartButton = document.querySelector('.restart');
 
+// Select the list that holds the stars
+const starsList = document.querySelector('.stars')
+
 // Different card types
 const diamond = 'diamond';
 const paperPlane = 'paper-plane-o';
@@ -72,8 +75,6 @@ function shuffle(array) {
 // This function decreases the user's star rating based on how many moves they've completed.
 const starRating = () => {
 
-    // Select the list that holds the stars
-    const starsList = document.querySelector('.stars')
     const starIcon = document.querySelector('.fa-star');
 
     // If number of moves equal 10, the player will be bumped down to 2 stars
@@ -303,8 +304,11 @@ const congrats = () => {
         // Select the modal's paragraph tag
         const modalParagraph = document.querySelector('p');
 
+        // The number of stars remaining
+        const numberOfStars = starsList.children.length;
+
         // Add content to modal paragraph
-        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML}, and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
+        modalParagraph.innerHTML = `Congratulations! It took you ${document.querySelector('.time').innerHTML}, ${numberOfStars} stars, and ${movesCounter.innerHTML} moves to win! If you'd like to play again, click the button below!`;
 
         // Select the restart game button
         const restartGameModalButton = document.querySelector('.restartbtn');
