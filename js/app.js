@@ -80,7 +80,7 @@ const starRating = () => {
     // If number of moves equal 10, the player will be bumped down to 2 stars
     // If number of moves equal 15, the player will be bumped down to 1 stars
    if (movesCounter.textContent == 10 || movesCounter.textContent == 15) {
-        starIcon.remove();
+        starIcon.parentElement.remove();
     }
 }
 
